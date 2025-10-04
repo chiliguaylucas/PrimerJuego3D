@@ -28,6 +28,7 @@ public class PlayerMovement : MonoBehaviour
     /// Representa la strategia de movimiento
     /// </summary>
     private IMovementStrategy strategy;
+    private Player player;
 
     #region Ciclo de vida del Script
 
@@ -38,11 +39,13 @@ public class PlayerMovement : MonoBehaviour
         tiempoDesdeUltimaFuerza = 0f;
         intervaloTiempo = 2f;
         velocidadLateral = 5f;
-        SetStrategy(new MovimientoAcelerado());
+        player = new Player(5f,5f);
+        SetStrategy(new MovimientoLateral());
+        //SetStrategy(new MovimientoAcelerado());
     }
     private void Update()
     {
-        strategy.Move(transform,velocidadLateral);
+        strategy.Move(transform,player);
     }
     private void FixedUpdate()
     {
