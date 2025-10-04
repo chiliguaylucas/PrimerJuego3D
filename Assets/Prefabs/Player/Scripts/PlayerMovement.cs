@@ -40,13 +40,10 @@ public class PlayerMovement : MonoBehaviour
         intervaloTiempo = 2f;
         velocidadLateral = 5f;
         player = new Player(5f,5f);
-        SetStrategy(new MovimientoLateral());
+       // SetStrategy(new MovimientoLateral());
         //SetStrategy(new MovimientoAcelerado());
     }
-    private void Update()
-    {
-        strategy.Move(transform,player);
-    }
+  
     private void FixedUpdate()
     {
         tiempoDesdeUltimaFuerza += Time.fixedDeltaTime;
@@ -58,6 +55,10 @@ public class PlayerMovement : MonoBehaviour
 
     }
     #endregion
+    public void MovePlayer( float input)
+    {
+        strategy.Move(transform, player,input);
+    }
 
     #region Logica del script
     public void SetStrategy(IMovementStrategy strategy)
@@ -65,4 +66,5 @@ public class PlayerMovement : MonoBehaviour
         this.strategy = strategy;
      }
     #endregion
+   
 }
